@@ -2,10 +2,6 @@ import math
 import random
 
 # CONSTANTS
-MOVIE_SECONDS = 90 * 60 # duration of the movie in seconds
-NUM_SWAPS = 5 # number of times to swap to a different language
-SWAP_MIN_SECONDS = 30 # minimum number of seconds before reverting back to english
-SWAP_MAX_SECONDS = 90 # maximum number of seconds before reverting back to english
 SWAP_LANGUAGES = ["Spanish", "French", "Test"] # pool of languages that can be swapped to
 
 # HELPER FUNCTIONS
@@ -44,14 +40,14 @@ def secondsToTime(seconds: int):
 
     return [time_hours, time_minutes, seconds]
 
-def generateSwaps():
+def generateSwaps(numSwaps: int, movieSeconds: int, swapTimeMin: int, swapTimeMax: int):
 
     times = []
 
-    while times.__len__() < NUM_SWAPS:
+    while times.__len__() < numSwaps:
 
-        newSwapTime = generateSwap(MOVIE_SECONDS)
-        newEnglishReturn = generateEnglishReturn(newSwapTime, SWAP_MIN_SECONDS, SWAP_MAX_SECONDS)
+        newSwapTime = generateSwap(movieSeconds)
+        newEnglishReturn = generateEnglishReturn(newSwapTime, swapTimeMin, swapTimeMax)
 
         if not (hasCollision(times, newSwapTime) or hasCollision(times, newEnglishReturn)):
             times.append(newSwapTime)
