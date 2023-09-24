@@ -119,3 +119,22 @@ print("")
 print("hasCollision works for a list that collides on a value of the list")
 assert_equal(shrek.hasCollision([1, 4, 8, 11], 8), True)
 print("")
+
+# TESTS FOR SECONDS TO TIME
+print("-----testing secondsToTime\n")
+
+print("secondsToTime works when all fields are non zero")
+assert_equal(shrek.secondsToTime(12859), [3, 34, 19])
+print("")
+
+print("secondsToTime works when hours is 0")
+assert_equal(shrek.secondsToTime(2059), [0, 34, 19])
+print("")
+
+print("secondsToTime works when minutes is 0")
+assert_equal(shrek.secondsToTime(10819), [3, 0, 19])
+print("")
+
+print("secondsToTime works when seconds is 0")
+assert_equal(shrek.secondsToTime(12840), [3, 34, 0])
+print("")
