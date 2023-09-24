@@ -13,13 +13,13 @@ def generateSwap(time: int) -> int:
 
     return random.randrange(1, time + 1)
 
-def generateEnglishReturn(swapTime: int) -> int:
+def generateEnglishReturn(swapTime: int, minSeconds: int, maxSeconds: int) -> int:
 
-    return swapTime + random.randrange(SWAP_MIN_SECONDS, SWAP_MAX_SECONDS)
+    return swapTime + random.randrange(minSeconds, maxSeconds + 1)
 
 def isBetween(start: int, end: int, toCheck: int) -> bool:
 
-    return (toCheck > start) and (toCheck < end)
+    return (toCheck >= start) and (toCheck <= end)
 
 def hasCollision(currentSwaps, newSwap) -> bool:
     
@@ -49,7 +49,7 @@ def generateSwaps():
     while times.__len__() < NUM_SWAPS:
 
         newSwapTime = generateSwap(MOVIE_SECONDS)
-        newEnglishReturn = generateEnglishReturn(newSwapTime)
+        newEnglishReturn = generateEnglishReturn(newSwapTime, SWAP_MIN_SECONDS, SWAP_MAX_SECONDS)
 
         if not (hasCollision(times, newSwapTime) or hasCollision(times, newEnglishReturn)):
             times.append(newSwapTime)
