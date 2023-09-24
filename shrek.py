@@ -6,7 +6,7 @@ MOVIE_SECONDS = 90 * 60
 NUM_SWAPS = 5
 SWAP_MIN_SECONDS = 30
 SWAP_MAX_SECONDS = 90
-SWAP_LANGUAGES = ["Spanish", "French"]
+SWAP_LANGUAGES = ["Spanish", "French", "Test"]
 
 # HELPER FUNCTIONS
 def generateSwap() -> int:
@@ -65,7 +65,7 @@ def printTimes(times):
             isReturnToEnglish = False
             print("")
         else:
-            printTime(i, SWAP_LANGUAGES[random.randint(0, 1)])
+            printTime(i, SWAP_LANGUAGES[random.randint(0, SWAP_LANGUAGES.__len__() - 1)])
             isReturnToEnglish = True
 
 # MAIN
