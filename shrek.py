@@ -21,12 +21,14 @@ def isBetween(start: int, end: int, toCheck: int) -> bool:
 
     return (toCheck >= start) and (toCheck <= end)
 
-def hasCollision(currentSwaps, newSwap) -> bool:
+def hasCollision(currentSwaps, newSwap: int) -> bool:
     
-    for i in range(0, (currentSwaps.__len__() - 1 ) // 2):
+    for i in range(0, (currentSwaps.__len__()) // 2):
 
-        if isBetween(currentSwaps[i], currentSwaps[i + 1], newSwap):
+        if isBetween(currentSwaps[i*2], currentSwaps[i*2 + 1], newSwap):
+            print("was true")
             return True
+
         
     return False
 

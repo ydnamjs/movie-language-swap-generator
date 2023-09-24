@@ -3,7 +3,7 @@ from bakery import assert_equal
 import shrek
 
 # TESTS FOR GENERATE SWAP
-print("-----testing generateSwap")
+print("-----testing generateSwap\n")
 
 generateCount = 0
 generateSampleSize = 100000 # there's probably a more statistically appropriate number but the test is O(n) anyway so whatever
@@ -23,8 +23,6 @@ while generateCount < generateSampleSize:
 
     generateCount += 1
 
-print("")
-
 print("generateSwap does not produce a value less than 0")
 assert_equal(generatedMin >= 0, True)
 print("")
@@ -38,7 +36,7 @@ assert_equal(generatedMax == sampleTime, True)
 print("")
 
 # TESTS FOR GENERATE ENGLISH RETURN
-print("-----testing generateEnglishReturn")
+print("-----testing generateEnglishReturn\n")
 
 generateCount = 0
 generateSampleSize = 100000 # there's probably a more statistically appropriate number but the test is O(n) anyway so whatever
@@ -60,8 +58,6 @@ while generateCount < generateSampleSize:
 
     generateCount += 1
 
-print("")
-
 print("generateEnglishReturn does not produce a value less than the original + the min")
 assert_equal(generatedMin >= sampleTime + sampleMin, True)
 print("")
@@ -75,7 +71,7 @@ assert_equal(generatedMax == sampleTime + sampleMax, True)
 print("")
 
 # TESTS FOR IS BETWEEN
-print("-----testing isBetween")
+print("-----testing isBetween\n")
 
 print("isBetween works for a general in between case")
 assert_equal(shrek.isBetween(1, 4, 2), True)
@@ -95,4 +91,31 @@ print("")
 
 print("isBetween works for when the number is equal to the upper parameter")
 assert_equal(shrek.isBetween(1, 4, 4), True)
+print("")
+
+# TESTS FOR IS BETWEEN
+print("-----testing hasCollision\n")
+
+print("hasCollision works for the empty list")
+assert_equal(shrek.hasCollision([], 5), False)
+print("")
+
+print("hasCollision works for a list that does not collide between elements")
+assert_equal(shrek.hasCollision([1, 4, 8, 11], 7), False)
+print("")
+
+print("hasCollision works for a list that does not collide before all elements")
+assert_equal(shrek.hasCollision([1, 4, 8, 11], 0), False)
+print("")
+
+print("hasCollision works for a list that does not collide after all elements")
+assert_equal(shrek.hasCollision([1, 4, 8, 11], 13), False)
+print("")
+
+print("hasCollision works for a list that collides")
+assert_equal(shrek.hasCollision([1, 4, 8, 11], 9), True)
+print("")
+
+print("hasCollision works for a list that collides on a value of the list")
+assert_equal(shrek.hasCollision([1, 4, 8, 11], 8), True)
 print("")
