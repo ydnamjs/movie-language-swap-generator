@@ -1,9 +1,6 @@
 import math
 import random
 
-# CONSTANTS
-SWAP_LANGUAGES = ["Spanish", "French", "Test"] # pool of languages that can be swapped to
-
 # HELPER FUNCTIONS
 def generateSwap(time: int) -> int:
 
@@ -40,11 +37,12 @@ def secondsToTime(seconds: int):
 
     return [time_hours, time_minutes, seconds]
 
+#TODO This really ought to return a list of pairs rather than just every 2 elements being a pair
 def generateSwaps(numSwaps: int, movieSeconds: int, swapTimeMin: int, swapTimeMax: int):
 
     times = []
 
-    while times.__len__() < numSwaps:
+    while times.__len__() // 2 < numSwaps:
 
         newSwapTime = generateSwap(movieSeconds)
         newEnglishReturn = generateEnglishReturn(newSwapTime, swapTimeMin, swapTimeMax)
@@ -72,16 +70,16 @@ def printTime(time, newLanguage: str):
     ("0" + seconds.__str__() if seconds < 10 else seconds.__str__()) + 
     " -> Switch to " + newLanguage)
 
-def printTimes(times):
+def printTimes(times, originalLanguage: str, swapLanguages):
 
     isReturnToEnglish = False
 
     for i in times:
 
         if (isReturnToEnglish):
-            printTime(i, "English")
+            printTime(i, originalLanguage)
             isReturnToEnglish = False
             print("")
         else:
-            printTime(i, SWAP_LANGUAGES[random.randint(0, SWAP_LANGUAGES.__len__() - 1)])
+            printTime(i, swapLanguages[random.randint(0, swapLanguages.__len__() - 1)])
             isReturnToEnglish = True

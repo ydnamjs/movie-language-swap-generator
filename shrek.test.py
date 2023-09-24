@@ -138,3 +138,14 @@ print("")
 print("secondsToTime works when seconds is 0")
 assert_equal(shrek.secondsToTime(12840), [3, 34, 0])
 print("")
+
+# TESTS FOR GENERATE SWAPS
+print("-----testing generateSwaps\n")
+
+print("generateSwaps makes a list of appropriate length")
+assert_equal(shrek.generateSwaps(3, 4567, 7, 8).__len__(), 6)
+print("")
+
+print("generateSwaps makes a list of appropriate length with a different input")
+assert_equal(shrek.generateSwaps(235, 456792, 7, 8).__len__(), 470)
+print("")
