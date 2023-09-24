@@ -9,10 +9,9 @@ SWAP_MIN_SECONDS = 30 # minimum number of seconds before reverting back to engli
 SWAP_MAX_SECONDS = 90 # maximum number of seconds before reverting back to english
 SWAP_LANGUAGES = ["Spanish", "French", "Test"] # pool of languages that can be swapped to
 
-
 # MAIN
 def main():
-    
+
     shrek.printTimes(shrek.generateSwaps(NUM_SWAPS, MOVIE_SECONDS, SWAP_MIN_SECONDS, SWAP_MAX_SECONDS), DEFAULT_LANGUAGE, SWAP_LANGUAGES)
 
 main()

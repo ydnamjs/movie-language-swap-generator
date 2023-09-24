@@ -51,6 +51,8 @@ def generateSwaps(numSwaps: int, movieSeconds: int, swapTimeMin: int, swapTimeMa
             times.append(newSwapTime)
             times.append(newEnglishReturn)
 
+    times.sort()
+
     timesConverted = []
 
     for i in times:
@@ -70,6 +72,7 @@ def printTime(time, newLanguage: str):
     ("0" + seconds.__str__() if seconds < 10 else seconds.__str__()) + 
     " -> Switch to " + newLanguage)
 
+# The generation of languages swapped to should probably be done in a different function
 def printTimes(times, originalLanguage: str, swapLanguages):
 
     isReturnToEnglish = False
