@@ -9,13 +9,26 @@ SWAP_MAX_SECONDS = 90 # maximum number of seconds before reverting back to engli
 SWAP_LANGUAGES = ["Spanish", "French", "Test"] # pool of languages that can be swapped to
 
 # HELPER FUNCTIONS
-def generateSwap() -> int:
+def generateSwap(time: int) -> int:
 
-    return random.randrange(1, MOVIE_SECONDS)
+    return random.randrange(1, time + 1)
 
 def generateEnglishReturn(swapTime: int) -> int:
 
     return swapTime + random.randrange(SWAP_MIN_SECONDS, SWAP_MAX_SECONDS)
+
+def isBetween(start: int, end: int, toCheck: int) -> bool:
+
+    return (toCheck > start) and (toCheck < end)
+
+def hasCollision(currentSwaps, newSwap) -> bool:
+    
+    for i in range(0, (currentSwaps.__len__() - 1 ) // 2):
+
+        if isBetween(currentSwaps[i], currentSwaps[i + 1], newSwap):
+            return True
+        
+    return False
 
 def secondsToTime(seconds: int):
     
@@ -29,25 +42,25 @@ def secondsToTime(seconds: int):
 
     return [time_hours, time_minutes, seconds]
 
-def checkCollision(currentSwaps, newSwap) -> bool:
-    
-    for i in range(0, (currentSwaps.__len__() - 1 ) / 2):
-
-        if 
-
-
 def generateSwaps():
 
     times = []
 
-    for i in range(0, NUM_SWAPS):
+    while times.__len__() < NUM_SWAPS:
 
-        newSwapTime = generateSwap()
+        newSwapTime = generateSwap(MOVIE_SECONDS)
+        newEnglishReturn = generateEnglishReturn(newSwapTime)
 
-        times.append(secondsToTime(newSwapTime))
-        times.append(secondsToTime(generateEnglishReturn(newSwapTime)))
+        if not (hasCollision(times, newSwapTime) or hasCollision(times, newEnglishReturn)):
+            times.append(newSwapTime)
+            times.append(newEnglishReturn)
 
-    return times
+    timesConverted = []
+
+    for i in times:
+        timesConverted.append(secondsToTime(i))
+
+    return timesConverted
 
 def printTime(time, newLanguage: str):
 
@@ -74,10 +87,3 @@ def printTimes(times):
         else:
             printTime(i, SWAP_LANGUAGES[random.randint(0, SWAP_LANGUAGES.__len__() - 1)])
             isReturnToEnglish = True
-
-# MAIN
-def main():
-    
-    printTimes(generateSwaps())
-
-main()
