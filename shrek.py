@@ -19,7 +19,6 @@ def hasCollision(currentSwaps, newSwap: int) -> bool:
     for i in range(0, (currentSwaps.__len__()) // 2):
 
         if isBetween(currentSwaps[i*2], currentSwaps[i*2 + 1], newSwap):
-            print("was true")
             return True
 
         
@@ -75,7 +74,7 @@ def printTime(time, newLanguage: str):
 # The generation of languages swapped to should probably be done in a different function
 def printTimes(times, originalLanguage: str, swapLanguages):
 
-    isReturnToEnglish = False
+    isReturnToEnglish = False   
 
     for i in times:
 
